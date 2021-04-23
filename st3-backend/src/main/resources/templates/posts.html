@@ -1,0 +1,25 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Spring MVC Application - User Posts</title>
+</head>
+
+<header th:replace="layout :: logged-in"></header>
+
+<body>
+<h1>Phone Directory</h1>
+<main id="posts">
+    <post th:each="p : ${posts}">
+        <h2 th:text="${p.name}"></h2>
+        <h2 th:text="${p.number}"></h2>
+        <h2 th:text="${p.email}"></h2>
+        <div>
+            <form th:action="@{/deletePost(postId=${p.id})}" th:method="delete">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </post>
+</main>
+</body>
+
+</html>
